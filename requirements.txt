@@ -3,8 +3,8 @@ Django==6.0.7
 channels==4.3.2
 channels-redis==4.3.0
 # redis-py 8.0 times out channels-redis' expected empty BLPOP after five seconds.
-redis==7.4.1
-daphne==4.2.2
+redis==8.1.0
+daphne==4.2.3
 django-cors-headers==4.9.0
 # Serves collected static files from the app process: a container platform has
 # no reverse proxy in front of Django to do it.
