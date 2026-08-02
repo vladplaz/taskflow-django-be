@@ -114,7 +114,7 @@ jobs:
 
       - uses: google-github-actions/setup-gcloud@v2
 
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@v4
         with:
           registry: ${{ vars.GCP_REGION }}-docker.pkg.dev
           username: oauth2accesstoken
