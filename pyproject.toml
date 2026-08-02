@@ -1,0 +1,54 @@
+[project]
+name = "taskflow-backend"
+version = "1.0.0"
+description = "Django + DRF + Channels backend for the TaskFlow board application."
+requires-python = ">=3.13"
+
+# Runtime dependencies are pinned in requirements.txt (see AGENTS.md rule 4);
+# this file configures tooling only.
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+extend-exclude = ["*/migrations/*"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "W",    # pycodestyle warnings
+    "I",    # isort
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "DJ",   # flake8-django
+    "C4",   # flake8-comprehensions
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    # DRF and Django idiomatically call functions in argument defaults.
+    "B008",
+    # RUF012 wants ClassVar on every mutable class attribute. Django and DRF
+    # are built on exactly that pattern (fields, list_display, inlines,
+    # permission_classes), so the rule is noise in this codebase.
+    "RUF012",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Settings modules compose through star imports by design.
+"taskflow/settings/*.py" = ["F403", "F405"]
+# Test names describe behaviour and run long.
+"*/tests/*.py" = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["apps", "taskflow"]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+lines-after-imports = 2
+
+[tool.ruff.format]
+quote-style = "double"

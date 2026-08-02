@@ -1,0 +1,10 @@
+Hello,
+
+{{ invitation.inviter_name }} invited you to join the "{{ invitation.workspace_name }}" workspace on TaskFlow.
+
+Accept the invitation:
+{{ invitation.invite_url }}
+
+This link expires on {{ invitation.expires_at|date:"j F Y, H:i" }} UTC.
+
+If you were not expecting this invitation you can ignore this message.

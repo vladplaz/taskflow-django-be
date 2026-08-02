@@ -1,0 +1,5 @@
+#   pip install -r requirements.txt -r requirements-dev.txt
+-r requirements.txt
+
+ruff==0.16.0
+pip-audit==2.9.0

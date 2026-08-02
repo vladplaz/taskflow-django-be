@@ -1,0 +1,107 @@
+from django.urls import path
+
+from .views import (
+    BoardDetailView,
+    BoardInvitationListCreateView,
+    BoardInvitationResendView,
+    BoardLabelDetailView,
+    BoardLabelListCreateView,
+    BoardLeaveView,
+    BoardMemberDetailView,
+    BoardMemberListView,
+    BoardRestoreView,
+    BoardStatusDetailView,
+    BoardStatusListCreateView,
+    CurrentUserBoardInvitationAcceptView,
+    CurrentUserBoardInvitationListView,
+    CurrentUserBoardInvitationRejectView,
+    MyBoardListView,
+    PublicBoardInvitationView,
+    WorkspaceBoardListCreateView,
+)
+
+
+urlpatterns = [
+    path("boards/", MyBoardListView.as_view(), name="my-board-list"),
+    path(
+        "boards/invitations/",
+        CurrentUserBoardInvitationListView.as_view(),
+        name="current-user-board-invitation-list",
+    ),
+    path(
+        "boards/invitations/<int:invitation_id>/accept/",
+        CurrentUserBoardInvitationAcceptView.as_view(),
+        name="current-user-board-invitation-accept",
+    ),
+    path(
+        "boards/invitations/<int:invitation_id>/reject/",
+        CurrentUserBoardInvitationRejectView.as_view(),
+        name="current-user-board-invitation-reject",
+    ),
+    path(
+        "boards/invitation-links/<uuid:token>/",
+        PublicBoardInvitationView.as_view(),
+        name="public-board-invitation",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/",
+        WorkspaceBoardListCreateView.as_view(),
+        name="workspace-board-list-create",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:pk>/",
+        BoardDetailView.as_view(),
+        name="board-detail",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/restore/",
+        BoardRestoreView.as_view(),
+        name="board-restore",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/members/",
+        BoardMemberListView.as_view(),
+        name="board-member-list",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/members/me/",
+        BoardLeaveView.as_view(),
+        name="board-leave",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/members/<int:membership_id>/",
+        BoardMemberDetailView.as_view(),
+        name="board-member-detail",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/invitations/",
+        BoardInvitationListCreateView.as_view(),
+        name="board-invitation-list-create",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/invitations/"
+        "<int:invitation_id>/resend/",
+        BoardInvitationResendView.as_view(),
+        name="board-invitation-resend",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/statuses/",
+        BoardStatusListCreateView.as_view(),
+        name="board-status-list-create",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/statuses/<int:pk>/",
+        BoardStatusDetailView.as_view(),
+        name="board-status-detail",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/labels/",
+        BoardLabelListCreateView.as_view(),
+        name="board-label-list-create",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/labels/<int:pk>/",
+        BoardLabelDetailView.as_view(),
+        name="board-label-detail",
+    ),
+]

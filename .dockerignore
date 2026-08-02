@@ -1,0 +1,33 @@
+# Not needed to run the server. Notably `.env`: baking secrets into a layer
+# publishes them to anyone who can pull the image.
+.env
+.env.*
+env.cloudrun*.yaml
+.git
+.github
+.gitignore
+.venv/
+venv/
+env/
+
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+media/
+mediafiles/
+staticfiles/
+schema.yaml
+*.log
+
+compose.yaml
+requirements-dev.txt
+pyrightconfig.json
+README.md
+.DS_Store
+.idea/
+.vscode/

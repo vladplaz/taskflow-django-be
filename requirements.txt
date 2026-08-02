@@ -1,0 +1,18 @@
+# Tested together on 2026-07-26 with Python 3.13 and Django 6.0.
+Django==6.0.7
+channels==4.3.2
+channels-redis==4.3.0
+# redis-py 8.0 times out channels-redis' expected empty BLPOP after five seconds.
+redis==7.4.1
+daphne==4.2.2
+django-cors-headers==4.9.0
+# Serves collected static files from the app process: a container platform has
+# no reverse proxy in front of Django to do it.
+whitenoise==6.12.0
+djangorestframework==3.17.1
+drf-spectacular==0.30.0
+psycopg[binary]==3.3.4
+django-storages[s3]==1.14.6
+Pillow==12.3.0
+# Reads `.env` into os.environ; Docker Compose reads the same file.
+python-dotenv==1.2.2

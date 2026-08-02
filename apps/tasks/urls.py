@@ -1,0 +1,74 @@
+from django.urls import path
+
+from .views import (
+    BoardListDetailView,
+    BoardListListCreateView,
+    BoardListMoveView,
+    BoardListRestoreView,
+    TaskActivityListView,
+    TaskCommentCreateView,
+    TaskCommentDetailView,
+    TaskDetailView,
+    TaskListCreateView,
+    TaskMoveView,
+    TaskRestoreView,
+)
+
+
+urlpatterns = [
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/lists/",
+        BoardListListCreateView.as_view(),
+        name="board-list-list-create",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/lists/<int:list_id>/",
+        BoardListDetailView.as_view(),
+        name="board-list-detail",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/lists/<int:list_id>/move/",
+        BoardListMoveView.as_view(),
+        name="board-list-move",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/boards/<int:board_id>/lists/<int:list_id>/restore/",
+        BoardListRestoreView.as_view(),
+        name="board-list-restore",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/lists/<int:list_id>/tasks/",
+        TaskListCreateView.as_view(),
+        name="task-list-create",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/tasks/<int:pk>/",
+        TaskDetailView.as_view(),
+        name="task-detail",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/tasks/<int:task_id>/move/",
+        TaskMoveView.as_view(),
+        name="task-move",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/tasks/<int:task_id>/restore/",
+        TaskRestoreView.as_view(),
+        name="task-restore",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/tasks/<int:task_id>/activity/",
+        TaskActivityListView.as_view(),
+        name="task-activity-list",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/tasks/<int:task_id>/comments/",
+        TaskCommentCreateView.as_view(),
+        name="task-comment-create",
+    ),
+    path(
+        "workspaces/<int:workspace_id>/comments/<int:pk>/",
+        TaskCommentDetailView.as_view(),
+        name="task-comment-detail",
+    ),
+]
