@@ -92,6 +92,11 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = env_str("DJANGO_SESSION_COOKIE_SAMESITE", "Lax")
 CSRF_COOKIE_SAMESITE = env_str("DJANGO_CSRF_COOKIE_SAMESITE", "Lax")
 
+# The client reads this cookie from JavaScript, so an API on api.example.com
+# has to widen it to .example.com for a client on app.example.com. The session
+# cookie stays host-only: nothing outside the API needs it.
+CSRF_COOKIE_DOMAIN = env_str("DJANGO_CSRF_COOKIE_DOMAIN", "") or None
+
 # --- Cross-origin access for the React client ---
 
 CORS_ALLOWED_ORIGINS = env_list("DJANGO_CORS_ALLOWED_ORIGINS", ["http://localhost:5173"])
